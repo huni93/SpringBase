@@ -15,5 +15,9 @@ public class MemberDao {
 	  map.put(member.getEmail(), member);
   }
   
+  public void update(Member member) {
+	  map.put(member.getEmail(), member);
+  }
   
-}
+  
+}//end class
