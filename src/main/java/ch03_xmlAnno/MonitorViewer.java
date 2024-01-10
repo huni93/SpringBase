@@ -1,7 +1,11 @@
 package ch03_xmlAnno;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MonitorViewer implements Viewer {
-    
+    @Autowired
 	private DisplayMode displayMode;
 	public void setDisplayMode(DisplayMode displayMode) {
 		this.displayMode = displayMode;

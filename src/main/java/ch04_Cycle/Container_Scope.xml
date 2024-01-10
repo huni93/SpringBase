@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/context
+             http://www.springframework.org/schema/context/spring-context.xsd">
+  
+  <context:annotation-config/>
+  <bean id = "workProto" class="ch04_Cycle.Work" scope="prototype">
+  <property name="timeout" value="2000"/>
+  <property name="type" value="#{T(ch04_Cycle.Work$WorkType).SINGLE}"/>
+  </bean>
+  
+  <bean id="workRunner" class="ch04_Cycle.WorkRunner"/>
+  <bean id="workScheduler" class="ch04_Cycle.WorkScheduler">
+  <property name="workRunner" ref="workRunner"/>
+  </bean>
+</beans>

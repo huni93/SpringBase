@@ -1,5 +1,8 @@
 package ch03_xmlAnno;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SnsAlarmDevice implements AlarmDevice {
     	
 	public void alarm(String name) {

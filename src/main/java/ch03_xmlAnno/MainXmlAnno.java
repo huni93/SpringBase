@@ -14,7 +14,7 @@ public class MainXmlAnno {
 //		String[] config = {"classpath:ch03_xmlAnno/ContainerXmlAnno.xml"};
 //		ApplicationContext ctx1 = new ClassPathXmlApplicationContext(config);
 		System.out.println("============container setting");
-		/*Executor exec = ctx.getBean("executor",Executor.class);
+		Executor exec = ctx.getBean("executor",Executor.class);
 		exec.addUnit(new WorkUnit());
 		exec.addUnit(new WorkUnit());
 		
@@ -26,7 +26,7 @@ public class MainXmlAnno {
 		windowSensor.foundObject();
 		home.checkSensorAndAlarm();
 	
-*/
+
 }
 
 }
