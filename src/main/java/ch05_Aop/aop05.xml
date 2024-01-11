@@ -4,24 +4,40 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       
        xsi:schemaLocation="http://www.springframework.org/schema/beans
              http://www.springframework.org/schema/beans/spring-beans.xsd
              http://www.springframework.org/schema/context
-             http://www.springframework.org/schema/context/spring-context.xsd">
+             http://www.springframework.org/schema/context/spring-context.xsd
+             http://www.springframework.org/schema/aop
+             http://www.springframework.org/schema/aop/spring-aop.xsd">
             
             
-       <bean id ="write" class ="ch05_Aop.WriteImpi">
+       <bean id ="write" class ="ch05_Aop.WriteImpl">
        <constructor-arg>
        <ref bean ="articleDao" />
        </constructor-arg>
        </bean> 
        
-       <bean id ="read" class ="ch05_Aop.ReadImpi">
+       <bean id ="read" class ="ch05_Aop.ReadImpl">
        <constructor-arg>
        <ref bean ="articleDao" />
        </constructor-arg>
        </bean> 
        <bean id = "articleDao" class="ch05_Aop.OracleArticleDao" />    
-            
-            
+       <bean id = "logging" class="ch05_Aop.LoggingAspect" /> 
+       <aop:config>
+       <!--  pointcut:기본메서드 지정. spring.*Impl:spring 패키지의 클래스 중 클래스 이름이 
+              impl로 끝나는 클래스 *(..): 모든 메서드 매개변수상관없음.=======spring 패키지의
+             클래스 중 이름이 impl로 끝나는 모든 메서드를 지정 -->
+       <aop:pointcut expression="execution(public * ch05_Aop.*Impl.*(..))"
+       id="servicepointcut"/>
+       <!--  aspect:aop 클래스 지정 -->
+       <aop:aspect id = "loggingAspect" ref="logging">
+       <!-- around:advice의 한 종류. 기본메서드의 실행 전,후 모두 실행. advice:aop가 실행되는 시점을 설정 -->
+       <aop:around method="logging"  pointcut-ref="servicepointcut"/>
+       </aop:aspect>
+       </aop:config>                        
 </beans>
+
