@@ -1,15 +1,16 @@
-package ch06_Aop;
+package ch07_Aop;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Main_aop06 {
+public class Main2_aop7Anno {
 
 	public static void main(String[] args) {
-		String[] config ={"ch06_Aop/di06.xml","ch06_Aop/aop06.xml"};
+		String[] config ={"ch07_Aop/aop07.xml"};
 		
 		ApplicationContext ctx = 
-				new ClassPathXmlApplicationContext(config);
+				new AnnotationConfigApplicationContext(ContainerAnnoAop.class);
 		ReadArticleService service = ctx.getBean
 				("readArticleService",ReadArticleService.class);
 		System.out.println("=========================");

@@ -15,6 +15,7 @@
 
         <bean id ="loggingAdvice" class="ch06_Aop.LoggingAdvice"/>
         <bean id ="cacheAdvice" class="ch06_Aop.ArticleCacheAdvice"/>
+        <bean id ="traceAdvice" class="ch06_Aop.UpdateMemberInfoTraceAdvice"/>
 	<aop:config>
 		<aop:aspect id="loggingAspect" ref="loggingAdvice">
 			<aop:pointcut
@@ -36,6 +37,13 @@
 		<aop:aspect id ="cacheAspect" ref="cacheAdvice">
 		<aop:around method="cache"
 		     pointcut="execution(public * *..ReadArticleService.*(..))"/>
+		</aop:aspect>
+		
+		
+		<aop:aspect id ="traceAspect" ref="traceAdvice">
+		<aop:after-returning method="traceReturn" pointcut="args(id,info)"
+		                     returning="ret" arg-names="ret,id,info"/>
+		                     <!-- ret,id,info 순서 메소드의 파라메타와 순서가 동일 -->
 		</aop:aspect>
 		
 	</aop:config>
