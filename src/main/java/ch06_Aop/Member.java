@@ -6,8 +6,7 @@ public class Member {
 	int age;
 	@Override
 	public String toString() {
-		return "Member [memberId=" + memberId
-				+ ", name=" + name + ",age=" + age + "]";
+		return "Member [memberId=" + memberId + ", name=" + name + ", age=" + age + "]";
 	}
- 
+	
 }

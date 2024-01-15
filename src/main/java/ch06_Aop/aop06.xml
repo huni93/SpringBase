@@ -1,51 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+         xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
              http://www.springframework.org/schema/beans/spring-beans.xsd
              http://www.springframework.org/schema/context
              http://www.springframework.org/schema/context/spring-context.xsd
-             http://www.springframework.org/schema/aop
-             http://www.springframework.org/schema/aop/spring-aop.xsd">
-
-        <bean id ="loggingAdvice" class="ch06_Aop.LoggingAdvice"/>
-        <bean id ="cacheAdvice" class="ch06_Aop.ArticleCacheAdvice"/>
-        <bean id ="traceAdvice" class="ch06_Aop.UpdateMemberInfoTraceAdvice"/>
-	<aop:config>
-		<aop:aspect id="loggingAspect" ref="loggingAdvice">
-			<aop:pointcut
-				expression="execution(public * ch06_Aop..*(..))" id="publicMethod" />
-			<aop:before method="before" pointcut-ref="publicMethod" />
-			
-			<aop:after-returning method="afterReturning"
-				pointcut-ref="publicMethod" returning="ret" />
-				
-			<aop:after-throwing method="afterThrowing"
-				pointcut-ref="publicMethod" throwing="ex" />
-				
-			<aop:after method="afterFinally"
-				pointcut-ref="publicMethod" />
-				
-		</aop:aspect>
-		
-		
-		<aop:aspect id ="cacheAspect" ref="cacheAdvice">
-		<aop:around method="cache"
-		     pointcut="execution(public * *..ReadArticleService.*(..))"/>
-		</aop:aspect>
-		
-		
-		<aop:aspect id ="traceAspect" ref="traceAdvice">
-		<aop:after-returning method="traceReturn" pointcut="args(id,info)"
-		                     returning="ret" arg-names="ret,id,info"/>
-		                     <!-- ret,id,info 순서 메소드의 파라메타와 순서가 동일 -->
-		</aop:aspect>
-		
-	</aop:config>
+            http://www.springframework.org/schema/aop  
+            http://www.springframework.org/schema/aop/spring-aop.xsd">
+            
+            
+           <bean id="loggingAdvice" class="ch06_Aop.LoggingAdvice"/>
+            <bean id= "cacheAdvice" class = "ch06_Aop.ArticleCacheAdvice"/>
+            
+            
+            
+            
+            
+            
+            
+          <aop:config>
+    	<aop:aspect id="loggingAspect" ref="loggingAdvice">
+        <aop:pointcut expression="execution(public * ch06_Aop..*(..))" id="publicMethod"/>
+        
+        <aop:before method="before" pointcut-ref="publicMethod"/>
+        
+        <aop:after-returning method="afterReturning" pointcut-ref="publicMethod" returning="ret"/>
+        
+        <aop:after-throwing method="afterThrowing" pointcut-ref="publicMethod" throwing="ex"/>
+        
+        <aop:after method="afterFinally" pointcut-ref="publicMethod"/>
+    	</aop:aspect>
+    	
+    	
+    	<aop:aspect id="cacheAspect" ref="cacheAdvice">
+    		<aop:around method="cache"
+    			pointcut="execution(public * *..ReadArticleService.*(..))" />
+    	
+    	
+    	
+    	
+    	</aop:aspect>
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+</aop:config>
+       
+            
 </beans>
-

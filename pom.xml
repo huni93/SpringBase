@@ -8,13 +8,13 @@
   <url>http://maven.apache.org</url>
   
   <properties>
-	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	  <spring.version1>4.3.30.RELEASE</spring.version1>
-	  <spring.version2>5.2.19.RELEASE</spring.version2>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <spring.version1>4.3.30.RELEASE</spring.version1>
+     <spring.version2>5.2.19.RELEASE</spring.version2>
   </properties>
   
   <dependencies>
-	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-context</artifactId>

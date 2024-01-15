@@ -6,7 +6,8 @@ public class ReadImpl {
 		this.dao = dao;
 	}
 	public String read() {
-		System.out.println("ReadImpi.read 메서드 호출됨");
+		System.out.println("ReadImpl.read 메서드 요청");
 		return dao.select();
 	}
+
 }
